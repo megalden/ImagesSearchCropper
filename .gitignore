@@ -35,6 +35,8 @@ fastlane/test_output/
 *.dSYM
 
 # Secrets / local config
+Secrets.xcconfig
+Info.plist
 *.env
 .env
 .env.*

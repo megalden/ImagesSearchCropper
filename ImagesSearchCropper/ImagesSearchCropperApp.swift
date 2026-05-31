@@ -1,9 +1,3 @@
-//
-//  ImagesSearchCropperApp.swift
-//  ImagesSearchCropper
-//
-//  Created by Володимир Галушка on 28.05.2026.
-//
 
 import SwiftUI
 
