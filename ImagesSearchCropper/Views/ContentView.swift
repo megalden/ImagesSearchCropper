@@ -2,17 +2,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var viewModel: ViewModel
+    
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            ForEach(viewModel.images, id: \.self) { image in
+                Text("\(String(image.id ?? 0))")
+                    .font(.system(size: 14))
+            }
         }
         .padding()
+        .task {
+            await viewModel.fetchImages(query: "Fish")
+        }
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(viewModel: ViewModel(network: PixabayNetworkClientData(networkClient: NetworkClient())))
 }

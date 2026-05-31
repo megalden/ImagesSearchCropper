@@ -5,7 +5,7 @@ import SwiftUI
 struct ImagesSearchCropperApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewModel: ViewModel(network: PixabayNetworkClientData(networkClient: NetworkClient())))
         }
     }
 }

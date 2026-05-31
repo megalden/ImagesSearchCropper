@@ -6,11 +6,15 @@ enum PixabayEndpoint {
     private var baseURL: String {
         "https://pixabay.com/api"
     }
-    private var publicAPIKey: String {
-        Bundle.main.object(forInfoDictionaryKey: "PublicAPIKey") as? String ?? NetworkError.invalidURL.localizedDescription
+    private var publicAPIKey: String? {
+        Bundle.main.object(forInfoDictionaryKey: "PublicAPIKey") as? String
     }
     
     var url: URL? {
+        guard let publicAPIKey else {
+            return nil
+        }
+        
         switch self {
         case let .getPhotos(q):
             var components = URLComponents(string: baseURL)

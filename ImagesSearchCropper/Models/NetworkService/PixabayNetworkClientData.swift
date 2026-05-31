@@ -16,6 +16,8 @@ final class PixabayNetworkClientData: PixabayNetworkClientDataProtocol {
         guard let url = PixabayEndpoint.getPhotos(q: q).url else {
             throw NetworkError.invalidURL
         }
-        return try await networkClient.fetchData(url: url)
+        
+        let result: PixabayModel = try await networkClient.fetchData(url: url)
+        return result.hits
     }
 }

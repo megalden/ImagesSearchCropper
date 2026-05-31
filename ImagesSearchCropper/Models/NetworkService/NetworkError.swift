@@ -1,6 +1,8 @@
+import Foundation
 
-enum NetworkError: Error {
+enum NetworkError: LocalizedError {
     case invalidURL
+    case invalidApiKey
     case noData
     case decodingError
     case badStatusCode(Int)
@@ -9,6 +11,8 @@ enum NetworkError: Error {
         switch self {
         case .invalidURL:
             return "Invalid URL"
+        case .invalidApiKey:
+            return "Invalid API key"
         case .noData:
             return "No data received"
         case .decodingError:

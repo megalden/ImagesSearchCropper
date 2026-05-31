@@ -1,8 +1,8 @@
 
-struct PixabayModel: Decodable {
+struct PixabayModel: Decodable, Hashable {
     let hits: [Hit]
     
-    struct Hit: Decodable {
+    struct Hit: Decodable, Hashable {
         let id: Int?
         let previewURL: String?
         let largeImageURL: String?

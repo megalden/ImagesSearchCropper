@@ -140,6 +140,8 @@
 /* Begin XCBuildConfiguration section */
 		2F5C687B2FC84773000976AA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 2F5C68742FC84772000976AA /* ImagesSearchCropper */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
