@@ -30,7 +30,7 @@ struct SearchBoxView: View {
                 .frame(height: 52)
                 .overlay(
                     RoundedRectangle(cornerRadius: 5)
-                        .stroke(.gray.opacity(0.3), lineWidth: 2)
+                        .stroke(Color.userGray, lineWidth: 2)
                 )
                 .background(.gray.opacity(0.15))
                 .cornerRadius(5)
@@ -38,7 +38,7 @@ struct SearchBoxView: View {
                 
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
-                        .strokeBorder(.gray.opacity(0.3), style: StrokeStyle(lineWidth: 2))
+                        .strokeBorder(Color.userGray, style: StrokeStyle(lineWidth: 2))
                         .frame(width: 52, height: 52)
                         .foregroundStyle(.white)
                     
@@ -47,11 +47,11 @@ struct SearchBoxView: View {
                         .foregroundStyle(.gray)
                 }
             }
-            .padding(.horizontal, 20)
+            .padding(.horizontal)
             
             Rectangle()
                 .frame(height: 2)
-                .foregroundStyle(.gray.opacity(0.4))
+                .foregroundStyle(Color.userGray)
         }
     }
 }

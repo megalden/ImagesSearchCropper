@@ -3,8 +3,10 @@ import Foundation
 import Combine
 
 @MainActor
-final class ViewModel: ObservableObject {
+final class SearchViewModel: ObservableObject {
+    @Published var searchText: String = ""
     @Published private(set) var images: [PixabayModel.Hit] = []
+    @Published private(set) var searchInfo: PixabayModel?
     @Published private(set) var isLoading: Bool = false
     @Published var errorMessage: String?
     
@@ -21,7 +23,8 @@ final class ViewModel: ObservableObject {
         do {
             let images = try await network.fetchPhoto(q: query)
             await MainActor.run {
-                self.images = images
+                self.searchInfo = images
+                self.images = images.hits
                 self.isLoading = false
             }
         } catch {

@@ -2,7 +2,8 @@
 import SwiftUI
 
 struct SearhcView: View {
-    @State private var searchText: String = ""
+    @ObservedObject var appViewModel: AppViewModel
+    @ObservedObject var searchViewModel: SearchViewModel
     
     var body: some View {
         VStack(spacing: 30) {
@@ -18,7 +19,7 @@ struct SearhcView: View {
                     .padding(15)
                     .foregroundStyle(.gray)
                 
-                TextField("Search images", text: $searchText)
+                TextField("Search images", text: $searchViewModel.searchText)
                     .font(.system(size: 20))
                     .textFieldStyle(PlainTextFieldStyle())
                 
@@ -28,7 +29,7 @@ struct SearhcView: View {
             .cornerRadius(5)
             
             Button {
-                
+                appViewModel.screen = .results
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
@@ -64,5 +65,5 @@ struct SearhcView: View {
 }
 
 #Preview {
-    SearhcView()
+    SearhcView( appViewModel: AppViewModel(), searchViewModel: SearchViewModel(network: PixabayNetworkClientData(networkClient: NetworkClient())))
 }
