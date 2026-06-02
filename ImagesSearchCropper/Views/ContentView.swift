@@ -6,15 +6,21 @@ struct ContentView: View {
     
     
     var body: some View {
-        VStack {
-            ForEach(viewModel.images, id: \.self) { image in
-                Text("\(String(image.id ?? 0))")
-                    .font(.system(size: 14))
+        ScrollView(showsIndicators: false) {
+            VStack {
+                ForEach(viewModel.images, id: \.self) { image in
+                    AsyncImage(url: image.previewURL) { phase in
+                        phase.image?
+                            .resizable()
+                            .scaledToFill()
+                            .cornerRadius(10)
+                    }
+                }
             }
-        }
-        .padding()
-        .task {
-            await viewModel.fetchImages(query: "Fish")
+            .padding()
+            .task {
+                await viewModel.fetchImages(query: "Fish")
+            }
         }
     }
 }
