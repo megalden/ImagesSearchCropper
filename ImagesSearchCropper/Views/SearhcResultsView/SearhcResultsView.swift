@@ -24,26 +24,7 @@ struct SearhcResultsView: View {
                             VStack(spacing: 10) {
                                 ForEach(searchViewModel.images, id: \.self) { image in
                                     ZStack(alignment: .topTrailing) {
-                                        AsyncImage(url: image.largeImageURL) { phase in
-                                            phase.image?
-                                                .resizable()
-                                                .scaledToFill()
-                                                .cornerRadius(5)
-                                        }
-                                        
-                                        if let url = image.largeImageURL {
-                                            ShareLink(item: url) {
-                                                ZStack {
-                                                    RoundedRectangle(cornerRadius: 5)
-                                                        .foregroundStyle(Color.userGray)
-                                                        .frame(width: 32, height: 32)
-                                                    
-                                                    Image(systemName: "square.and.arrow.up")
-                                                        .foregroundStyle(Color.darkPurple)
-                                                }
-                                            }
-                                            .padding(20)
-                                        }
+                                        ImageBoxView(image: image)
                                     }
                                 }
                             }
