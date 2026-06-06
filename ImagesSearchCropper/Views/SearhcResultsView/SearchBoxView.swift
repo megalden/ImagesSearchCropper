@@ -51,11 +51,11 @@ struct SearchBoxView: View {
             
             Rectangle()
                 .frame(height: 2)
-                .foregroundStyle(Color.userGray)
+                .foregroundStyle(.gray)
         }
     }
 }
 
 #Preview {
-    SearchBoxView(searchText: .constant("Bob"))
+    SearchBoxView(searchText: .constant(""))
 }

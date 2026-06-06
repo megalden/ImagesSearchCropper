@@ -6,29 +6,40 @@ struct SearhcResultsView: View {
     @ObservedObject var searchViewModel: SearchViewModel
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .center) {
             SearchBoxView(searchText: $searchViewModel.searchText)
+                .background(Color.white)
             
             Spacer()
             
-            VStack {
+            VStack(alignment: .leading) {
                 if searchViewModel.isLoading {
-                    ProgressView()
+                    Spacer()
+                    
+                    VStack() {
+                        ProgressView()
+                        Text("Loading...")
+                    }
+                    
+                    Spacer()
                 } else {
-                    ScrollView {
-                        VStack(alignment: .leading)  {
-                            Text("\(searchViewModel.searchInfo?.total ?? 0 ) Free Images")
-                                .padding(.horizontal)
-                                .font(.system(size: 22, weight: .bold))
-                            
-                            VStack(spacing: 10) {
-                                ForEach(searchViewModel.images, id: \.self) { image in
-                                    ZStack(alignment: .topTrailing) {
-                                        ImageBoxView(image: image)
+                    NavigationStack {
+                        ScrollView {
+                            VStack(alignment: .leading)  {
+                                Text("Free Images")
+                                    .padding(.horizontal)
+                                    .font(.system(size: 22, weight: .bold))
+                                
+                                VStack(spacing: 10) {
+                                    ForEach(searchViewModel.images, id: \.self) { image in
+                                        NavigationLink(destination: ImagePageView(image: image.image)) {
+                                            ImageBoxView(image: image.image)
+                                        }
+                                        .buttonStyle(.plain)
                                     }
                                 }
+                                .padding(.horizontal)
                             }
-                            .padding(.horizontal)
                         }
                     }
                 }
@@ -41,5 +52,16 @@ struct SearhcResultsView: View {
 }
 
 #Preview {
-    SearhcResultsView( appViewModel: AppViewModel(), searchViewModel: SearchViewModel(network: PixabayNetworkClientData(networkClient: NetworkClient())))
+    SearhcResultsView(
+        appViewModel: AppViewModel(),
+        searchViewModel: SearchViewModel(
+            repository: ImageRepository(
+                networkClient: PixabayNetworkClientData(
+                    networkClient: NetworkClient()
+                ),
+                imageLoader: ImageLoader(),
+                imageCaching: ImageCaching()
+            )
+        )
+    )
 }

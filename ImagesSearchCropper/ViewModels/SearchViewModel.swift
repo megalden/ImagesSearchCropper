@@ -5,15 +5,14 @@ import Combine
 @MainActor
 final class SearchViewModel: ObservableObject {
     @Published var searchText: String = ""
-    @Published private(set) var images: [PixabayModel.Hit] = []
-    @Published private(set) var searchInfo: PixabayModel?
+    @Published private(set) var images: [ImageItem] = []
     @Published private(set) var isLoading: Bool = false
     @Published var errorMessage: String?
     
-    let network: PixabayNetworkClientDataProtocol
+    let repository: ImageRepositoryProtocol
     
-    init(network: PixabayNetworkClientDataProtocol) {
-        self.network = network
+    init(repository: ImageRepositoryProtocol) {
+        self.repository = repository
     }
     
     func fetchImages(query: String) async {
@@ -21,10 +20,10 @@ final class SearchViewModel: ObservableObject {
         errorMessage = nil
         
         do {
-            let images = try await network.fetchPhoto(q: query)
+            let images = try await repository.searchImages(query: query)
+            
             await MainActor.run {
-                self.searchInfo = images
-                self.images = images.hits
+                self.images = images
                 self.isLoading = false
             }
         } catch {

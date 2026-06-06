@@ -65,5 +65,16 @@ struct SearhcView: View {
 }
 
 #Preview {
-    SearhcView( appViewModel: AppViewModel(), searchViewModel: SearchViewModel(network: PixabayNetworkClientData(networkClient: NetworkClient())))
+    SearhcView(
+        appViewModel: AppViewModel(),
+        searchViewModel: SearchViewModel(
+            repository: ImageRepository(
+                networkClient: PixabayNetworkClientData(
+                    networkClient: NetworkClient()
+                ),
+                imageLoader: ImageLoader(),
+                imageCaching: ImageCaching()
+            )
+        )
+    )
 }

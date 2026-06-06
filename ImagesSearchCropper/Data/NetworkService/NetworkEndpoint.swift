@@ -1,7 +1,7 @@
 import Foundation
 
 enum PixabayEndpoint {
-    case getPhotos(q: String)
+    case getPhotos(query: String)
     
     private var baseURL: String {
         "https://pixabay.com/api"
@@ -16,11 +16,11 @@ enum PixabayEndpoint {
         }
         
         switch self {
-        case let .getPhotos(q):
+        case let .getPhotos(query):
             var components = URLComponents(string: baseURL)
             components?.queryItems = [
                 .init(name: "key", value: publicAPIKey),
-                .init(name: "q", value: q),
+                .init(name: "q", value: query),
                 .init(name: "image_type", value: "photo"),
             ]
             return components?.url

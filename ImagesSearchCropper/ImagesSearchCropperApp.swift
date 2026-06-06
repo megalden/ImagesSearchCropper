@@ -6,7 +6,13 @@ struct ImagesSearchCropperApp: App {
     @StateObject private var appViewModel = AppViewModel()
     
     @StateObject private var searchViewModel = SearchViewModel(
-        network: PixabayNetworkClientData(networkClient: NetworkClient())
+        repository: ImageRepository(
+            networkClient: PixabayNetworkClientData(
+                networkClient: NetworkClient()
+            ),
+            imageLoader: ImageLoader(),
+            imageCaching: ImageCaching()
+        )
     )
     
     var body: some Scene {

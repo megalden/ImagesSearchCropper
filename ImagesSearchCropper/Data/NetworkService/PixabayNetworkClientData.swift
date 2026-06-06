@@ -2,7 +2,7 @@
 import Foundation
 
 protocol PixabayNetworkClientDataProtocol {
-    func fetchPhoto(q: String) async throws -> PixabayModel
+    func fetchPhoto(query: String) async throws -> PixabayModel
 }
 
 final class PixabayNetworkClientData: PixabayNetworkClientDataProtocol {
@@ -12,8 +12,8 @@ final class PixabayNetworkClientData: PixabayNetworkClientDataProtocol {
         self.networkClient = networkClient
     }
     
-    func fetchPhoto(q: String) async throws -> PixabayModel {
-        guard let url = PixabayEndpoint.getPhotos(q: q).url else {
+    func fetchPhoto(query: String) async throws -> PixabayModel {
+        guard let url = PixabayEndpoint.getPhotos(query: query).url else {
             throw NetworkError.invalidURL
         }
         
