@@ -16,16 +16,22 @@ final class SearchViewModel: ObservableObject {
     }
     
     func fetchImages(query: String) async {
+        images = []
         isLoading = true
         errorMessage = nil
         
         do {
-            let images = try await repository.searchImages(query: query)
             
-            await MainActor.run {
-                self.images = images
-                self.isLoading = false
+            for try await imageItem in repository.searchImages(query: query) {
+                guard !images.contains(where: { $0.id == imageItem.id }) else {
+                        continue
+                    }
+                await MainActor.run {
+                    images.append(imageItem)
+                }
             }
+            
+            self.isLoading = false
         } catch {
             await MainActor.run {
                 errorMessage = error.localizedDescription

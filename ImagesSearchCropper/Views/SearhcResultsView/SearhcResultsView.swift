@@ -32,8 +32,8 @@ struct SearhcResultsView: View {
                                 
                                 VStack(spacing: 10) {
                                     ForEach(searchViewModel.images, id: \.self) { image in
-                                        NavigationLink(destination: ImagePageView(image: image.image)) {
-                                            ImageBoxView(image: image.image)
+                                        NavigationLink(destination: ImagePageView(image: image)) {
+                                            ImageBoxView(image: image)
                                         }
                                         .buttonStyle(.plain)
                                     }

@@ -3,13 +3,13 @@
 import SwiftUI
 
 struct ImagePageView: View {
-    var image: UIImage?
+    var image: ImageItem?
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack(spacing: 10) {
             ZStack(alignment: .bottomTrailing) {
-                if let uiImage = image {
+                if let uiImage = image?.image {
                     Image(uiImage: uiImage)
                         .resizable()
                         .scaledToFit()
@@ -27,6 +27,10 @@ struct ImagePageView: View {
                         }
                     }
                     .padding(22)
+                } else {
+                    Image(systemName: "photo")
+                        .font(.system(size: 32))
+                        .foregroundStyle(.gray)
                 }
             }
             
@@ -88,5 +92,11 @@ struct ImagePageView: View {
 }
 
 #Preview {
-    ImagePageView()
+    ImagePageView(
+        image: ImageItem(
+            id: 0,
+            url: URL(string: "https://pixabay.com/get/g887fa712a2ec98b5e11bc62c9da869584470e4989e52c8a70ff89a90f7f0d50277d67594a74015092156c7d62de157f22803ec8fa54ee189eaa322e9929a9d93_640.jpg")!,
+            image: .previem
+        )
+    )
 }

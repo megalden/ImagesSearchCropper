@@ -7,6 +7,6 @@ struct PixabayModel: Decodable, Hashable {
     struct Hit: Decodable, Hashable {
         let id: Int?
         let previewURL: URL?
-        let largeImageURL: URL?
+        let webformatURL: URL?
     }
 }
