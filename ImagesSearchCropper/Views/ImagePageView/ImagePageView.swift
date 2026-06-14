@@ -5,9 +5,28 @@ import SwiftUI
 struct ImagePageView: View {
     var image: ImageItem?
     @Environment(\.dismiss) private var dismiss
+    @State var showZoomView = false
+    @Binding var searchText: String
     
     var body: some View {
-        VStack(spacing: 10) {
+        VStack(alignment: .leading ,spacing: 10) {
+            SearchBoxView(searchText: $searchText)
+                .background(Color.white)
+            
+            Button {
+                dismiss()
+            } label: {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .foregroundStyle(Color.userGray)
+                        .frame(width: 32, height: 32)
+                    
+                    Image(systemName: "chevron.left")
+                        .foregroundStyle(Color.darkPurple)
+                }
+            }
+            .padding(22)
+            
             ZStack(alignment: .bottomTrailing) {
                 if let uiImage = image?.image {
                     Image(uiImage: uiImage)
@@ -15,7 +34,7 @@ struct ImagePageView: View {
                         .scaledToFit()
                     
                     Button {
-                        
+                        showZoomView = true
                     } label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: 5)
@@ -27,6 +46,10 @@ struct ImagePageView: View {
                         }
                     }
                     .padding(22)
+                    .navigationDestination(isPresented: $showZoomView) {
+                        ImageZoomView(image: image!)
+                    }
+                    
                 } else {
                     Image(systemName: "photo")
                         .font(.system(size: 32))
@@ -88,6 +111,8 @@ struct ImagePageView: View {
             }
             .padding(20)
         }
+        
+        Spacer()
     }
 }
 
@@ -97,6 +122,7 @@ struct ImagePageView: View {
             id: 0,
             url: URL(string: "https://pixabay.com/get/g887fa712a2ec98b5e11bc62c9da869584470e4989e52c8a70ff89a90f7f0d50277d67594a74015092156c7d62de157f22803ec8fa54ee189eaa322e9929a9d93_640.jpg")!,
             image: .previem
-        )
+        ),
+        searchText: .constant("")
     )
 }
