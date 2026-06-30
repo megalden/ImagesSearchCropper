@@ -21,11 +21,10 @@ final class SearchViewModel: ObservableObject {
         errorMessage = nil
         
         do {
-            
             for try await imageItem in repository.searchImages(query: query) {
                 guard !images.contains(where: { $0.id == imageItem.id }) else {
-                        continue
-                    }
+                    continue
+                }
                 await MainActor.run {
                     images.append(imageItem)
                 }

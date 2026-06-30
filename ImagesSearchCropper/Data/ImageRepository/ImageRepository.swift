@@ -11,7 +11,11 @@ final class ImageRepository: ImageRepositoryProtocol {
     let imageLoader: ImageLoaderProtocol
     let imageCaching: ImageCachingProtocol
     
-    init(networkClient: PixabayNetworkClientDataProtocol, imageLoader: ImageLoaderProtocol, imageCaching: ImageCachingProtocol) {
+    init(
+        networkClient: PixabayNetworkClientDataProtocol,
+        imageLoader: ImageLoaderProtocol,
+        imageCaching: ImageCachingProtocol
+    ) {
         self.networkClient = networkClient
         self.imageLoader = imageLoader
         self.imageCaching = imageCaching

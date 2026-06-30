@@ -45,6 +45,23 @@ struct SearhcView: View {
                 }
             }
             
+            Button {
+                
+            } label: {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .frame(height: 70)
+                        .foregroundStyle(Color.darkPurple)
+                    
+                    HStack {
+                        Image(systemName: "folder")
+                        Text("Gallery")
+                    }
+                    .foregroundStyle(.white)
+                    .font(.system(size: 24))
+                }
+            }
+            
             Spacer()
             
             Text("Photo by Free-Photos")
