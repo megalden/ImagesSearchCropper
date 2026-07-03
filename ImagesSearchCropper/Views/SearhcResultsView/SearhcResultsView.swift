@@ -5,6 +5,9 @@ struct SearhcResultsView: View {
     @ObservedObject var appViewModel: AppViewModel
     @ObservedObject var searchViewModel: SearchViewModel
     
+    let columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
+        
+    
     var body: some View {
         NavigationStack {
             VStack(alignment: .center) {
@@ -31,7 +34,7 @@ struct SearhcResultsView: View {
                                     .padding(.horizontal)
                                     .font(.system(size: 22, weight: .bold))
                                 
-                                VStack(spacing: 10) {
+                                LazyVGrid(columns: columns, spacing: 10) {
                                     ForEach(searchViewModel.images, id: \.self) { image in
                                         NavigationLink(destination: ImagePageView(
                                             image: image,

@@ -4,7 +4,7 @@ import SwiftUI
 
 struct ImagePageView: View {
     var image: ImageItem?
-    @Environment(\.dismiss) private var dismiss
+//    @Environment(\.dismiss) private var dismiss
     @State var showZoomView = false
     @Binding var searchText: String
     
@@ -13,26 +13,26 @@ struct ImagePageView: View {
             SearchBoxView(searchText: $searchText)
                 .background(Color.white)
             
-            Button {
-                dismiss()
-            } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 5)
-                        .foregroundStyle(Color.userGray)
-                        .frame(width: 32, height: 32)
-                    
-                    Image(systemName: "chevron.left")
-                        .foregroundStyle(Color.darkPurple)
-                }
-            }
-            .padding(22)
+//            Button {
+//                dismiss()
+//            } label: {
+//                ZStack {
+//                    RoundedRectangle(cornerRadius: 5)
+//                        .foregroundStyle(Color.userGray)
+//                        .frame(width: 32, height: 32)
+//                    
+//                    Image(systemName: "chevron.left")
+//                        .foregroundStyle(Color.darkPurple)
+//                }
+//            }
+//            .padding(22)
             
             ZStack(alignment: .bottomTrailing) {
                 if let uiImage = image?.image {
                     Image(uiImage: uiImage)
                         .resizable()
                         .scaledToFit()
-                    
+                        
                     Button {
                         showZoomView = true
                     } label: {

@@ -10,7 +10,9 @@ struct ImageBoxView: View {
             if let uiImage = image?.image {
                 Image(uiImage: uiImage)
                     .resizable()
-                    .scaledToFit()
+                    
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .clipped()
                 if let url = image?.url {
                     ShareLink(item: url) {
                         ZStack {
@@ -32,7 +34,7 @@ struct ImageBoxView: View {
             }
         }
         .frame(maxWidth: .infinity)
-        .clipped()
+        .aspectRatio(1.5, contentMode: .fit)
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }

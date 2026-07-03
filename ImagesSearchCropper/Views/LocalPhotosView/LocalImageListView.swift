@@ -4,6 +4,7 @@ import PhotosUI
 
 struct LocalImageListView: View {
     @StateObject var viewModel = LocalImageViewModel()
+    let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
         NavigationStack {
@@ -12,16 +13,14 @@ struct LocalImageListView: View {
                     EmptyStateView(selectedItems: $viewModel.selectedItems)
                 } else {
                     ScrollView() {
-                        VStack {
-                            ForEach(viewModel.photos) { photo in
-                                Image(uiImage: photo.image)
-                                    .resizable()
-                                    .scaledToFit()
+                        LazyVGrid(columns: columns) {
+                            ForEach($viewModel.photos) { $photo in
+                                LocalImageItemView(image: $photo.image)
                             }
                         }
                     }
+                    .padding(10)
                 }
-                
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {

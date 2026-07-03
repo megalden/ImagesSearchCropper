@@ -6,7 +6,7 @@ import SwiftUI
 
 @MainActor
 final class LocalImageViewModel: ObservableObject {
-    @Published private(set) var photos: [GalleryImage] = []
+    @Published var photos: [GalleryImage] = []
     @Published var selectedItems: [PhotosPickerItem] = []
     @Published private(set) var isLoading = false
     @Published var errorMessage: String?
