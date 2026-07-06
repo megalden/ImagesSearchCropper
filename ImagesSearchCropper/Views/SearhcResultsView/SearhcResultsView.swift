@@ -11,7 +11,7 @@ struct SearhcResultsView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .center) {
-                SearchBoxView(searchText: $searchViewModel.searchText)
+                SearchBoxView(searchText: $searchViewModel.searchText, backSearch: $appViewModel.screen)
                     .background(Color.white)
                 
                 Spacer()
@@ -37,7 +37,7 @@ struct SearhcResultsView: View {
                                 LazyVGrid(columns: columns, spacing: 10) {
                                     ForEach(searchViewModel.images, id: \.self) { image in
                                         NavigationLink(destination: ImagePageView(
-                                            image: image,
+                                            appViewModel: appViewModel, image: image,
                                             searchText: $searchViewModel.searchText)) {
                                                 ImageBoxView(image: image)
                                             }

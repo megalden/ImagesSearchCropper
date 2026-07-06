@@ -3,18 +3,24 @@ import SwiftUI
 
 struct SearchBoxView: View {
     @Binding var searchText: String
+    @Binding var backSearch: AppViewModel.Screen
     
     var body: some View {
         VStack {
             HStack(spacing: 15) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 5)
-                        .frame(width: 52, height: 52)
-                        .foregroundStyle(Color.darkPurple)
-                    
-                    Text("P")
-                        .font(.system(size: 40, weight: .bold))
-                        .foregroundStyle(.white)
+                
+                Button {
+                    backSearch = .search
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 5)
+                            .frame(width: 52, height: 52)
+                            .foregroundStyle(Color.darkPurple)
+                        
+                        Text("P")
+                            .font(.system(size: 40, weight: .bold))
+                            .foregroundStyle(.white)
+                    }
                 }
                 
                 HStack {
@@ -34,7 +40,6 @@ struct SearchBoxView: View {
                 )
                 .background(.gray.opacity(0.15))
                 .cornerRadius(5)
-                
                 
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
@@ -57,5 +62,5 @@ struct SearchBoxView: View {
 }
 
 #Preview {
-    SearchBoxView(searchText: .constant(""))
+    SearchBoxView(searchText: .constant(""), backSearch: .constant(.search))
 }

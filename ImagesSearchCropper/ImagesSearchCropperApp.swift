@@ -15,6 +15,8 @@ struct ImagesSearchCropperApp: App {
         )
     )
     
+    @StateObject private var localImageViewModel = LocalImageViewModel()
+    
     var body: some Scene {
         WindowGroup {
             switch appViewModel.screen {
@@ -29,6 +31,10 @@ struct ImagesSearchCropperApp: App {
                     appViewModel: appViewModel,
                     searchViewModel: searchViewModel
                 )
+                
+            case .localImage:
+                LocalImageListView(localImageViewModel: localImageViewModel, appViewModel: appViewModel)
+                
             }
         }
     }

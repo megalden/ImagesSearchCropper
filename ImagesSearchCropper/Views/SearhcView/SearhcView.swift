@@ -46,7 +46,7 @@ struct SearhcView: View {
             }
             
             Button {
-                
+                appViewModel.screen = .localImage
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)

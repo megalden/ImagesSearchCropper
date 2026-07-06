@@ -3,6 +3,8 @@
 import SwiftUI
 
 struct ImagePageView: View {
+    @ObservedObject var appViewModel: AppViewModel
+    
     var image: ImageItem?
 //    @Environment(\.dismiss) private var dismiss
     @State var showZoomView = false
@@ -10,7 +12,7 @@ struct ImagePageView: View {
     
     var body: some View {
         VStack(alignment: .leading ,spacing: 10) {
-            SearchBoxView(searchText: $searchText)
+            SearchBoxView(searchText: $searchText, backSearch: $appViewModel.screen)
                 .background(Color.white)
             
 //            Button {
@@ -118,7 +120,7 @@ struct ImagePageView: View {
 
 #Preview {
     ImagePageView(
-        image: ImageItem(
+        appViewModel: AppViewModel(), image: ImageItem(
             id: 0,
             url: URL(string: "https://pixabay.com/get/g887fa712a2ec98b5e11bc62c9da869584470e4989e52c8a70ff89a90f7f0d50277d67594a74015092156c7d62de157f22803ec8fa54ee189eaa322e9929a9d93_640.jpg")!,
             image: .previem

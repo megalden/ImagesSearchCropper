@@ -3,18 +3,20 @@ import SwiftUI
 import PhotosUI
 
 struct LocalImageListView: View {
-    @StateObject var viewModel = LocalImageViewModel()
+    @ObservedObject var localImageViewModel: LocalImageViewModel
+    @ObservedObject var appViewModel: AppViewModel
+    
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
         NavigationStack {
             Group {
-                if viewModel.photos.isEmpty {
-                    EmptyStateView(selectedItems: $viewModel.selectedItems)
+                if localImageViewModel.photos.isEmpty {
+                    EmptyStateView(selectedItems: $localImageViewModel.selectedItems)
                 } else {
                     ScrollView() {
                         LazyVGrid(columns: columns) {
-                            ForEach($viewModel.photos) { $photo in
+                            ForEach($localImageViewModel.photos) { $photo in
                                 LocalImageItemView(image: $photo.image)
                             }
                         }
@@ -24,26 +26,33 @@ struct LocalImageListView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    if !viewModel.photos.isEmpty {
+                    if !localImageViewModel.photos.isEmpty {
                         Button("Delete") {
-                            viewModel.clearPhotos()
+                            localImageViewModel.clearPhotos()
                         }
                     }
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
+                    Button("Back", systemImage: "chevron.left") {
+                        appViewModel.screen = .search
+                    }
+                        
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
                     PhotosPicker(
-                        selection: $viewModel.selectedItems,
+                        selection: $localImageViewModel.selectedItems,
                         maxSelectionCount: 10,
                         matching: .images) {
                             Label("Add", systemImage: "plus")
                         }
-                        .disabled(viewModel.isLoading)
+                        .disabled(localImageViewModel.isLoading)
                 }
             }
-            .onChange(of: viewModel.selectedItems) { _ in
+            .onChange(of: localImageViewModel.selectedItems) { _ in
                 Task {
-                    await viewModel.loadSelectedPhotos()
+                    await localImageViewModel.loadSelectedPhotos()
                 }
             }
         }
@@ -52,5 +61,5 @@ struct LocalImageListView: View {
 }
 
 #Preview {
-    LocalImageListView()
+    LocalImageListView(localImageViewModel: LocalImageViewModel(), appViewModel: AppViewModel())
 }
