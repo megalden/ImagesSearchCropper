@@ -8,6 +8,10 @@ protocol ImageCachingProtocol {
 final class ImageCaching: ImageCachingProtocol {
     private let cache = NSCache<NSString, UIImage>()
     
+    init() {
+        cache.totalCostLimit = 20 * 1920 * 1080
+    }
+    
     func image(url: URL) -> UIImage? {
         cache.object(forKey: url.absoluteString as NSString)
     }
