@@ -6,13 +6,32 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2FA20CCD2FF8078D0056A78A /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 2FA20CCC2FF8078D0056A78A /* CropViewController */; };
+		2FA20CD02FF807AE0056A78A /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 2FA20CCF2FF807AE0056A78A /* TOCropViewController */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		2F5C68722FC84772000976AA /* ImagesSearchCropper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImagesSearchCropper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2F98AADD2FC9FFC60026309B /* Exceptions for "ImagesSearchCropper" folder in "ImagesSearchCropper" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+				Secrets.xcconfig,
+			);
+			target = 2F5C68712FC84772000976AA /* ImagesSearchCropper */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		2F5C68742FC84772000976AA /* ImagesSearchCropper */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2F98AADD2FC9FFC60026309B /* Exceptions for "ImagesSearchCropper" folder in "ImagesSearchCropper" target */,
+			);
 			path = ImagesSearchCropper;
 			sourceTree = "<group>";
 		};
@@ -23,6 +42,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FA20CD02FF807AE0056A78A /* TOCropViewController in Frameworks */,
+				2FA20CCD2FF8078D0056A78A /* CropViewController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -33,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				2F5C68742FC84772000976AA /* ImagesSearchCropper */,
+				2FA20CCE2FF807AE0056A78A /* Frameworks */,
 				2F5C68732FC84772000976AA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +65,13 @@
 				2F5C68722FC84772000976AA /* ImagesSearchCropper.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		2FA20CCE2FF807AE0056A78A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -65,6 +94,8 @@
 			);
 			name = ImagesSearchCropper;
 			packageProductDependencies = (
+				2FA20CCC2FF8078D0056A78A /* CropViewController */,
+				2FA20CCF2FF807AE0056A78A /* TOCropViewController */,
 			);
 			productName = ImagesSearchCropper;
 			productReference = 2F5C68722FC84772000976AA /* ImagesSearchCropper.app */;
@@ -78,7 +109,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2630;
-				LastUpgradeCheck = 2630;
+				LastUpgradeCheck = 2650;
 				TargetAttributes = {
 					2F5C68712FC84772000976AA = {
 						CreatedOnToolsVersion = 26.3;
@@ -94,6 +125,9 @@
 			);
 			mainGroup = 2F5C68692FC84772000976AA;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2FA20CCB2FF8078D0056A78A /* XCRemoteSwiftPackageReference "TOCropViewController" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2F5C68732FC84772000976AA /* Products */;
 			projectDirPath = "";
@@ -127,6 +161,8 @@
 /* Begin XCBuildConfiguration section */
 		2F5C687B2FC84773000976AA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 2F5C68742FC84772000976AA /* ImagesSearchCropper */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -183,6 +219,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -239,6 +276,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -253,11 +291,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ImagesSearchCropper/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -284,11 +324,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ImagesSearchCropper/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -328,6 +370,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2FA20CCB2FF8078D0056A78A /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TimOliver/TOCropViewController.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2FA20CCC2FF8078D0056A78A /* CropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FA20CCB2FF8078D0056A78A /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = CropViewController;
+		};
+		2FA20CCF2FF807AE0056A78A /* TOCropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2FA20CCB2FF8078D0056A78A /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = TOCropViewController;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2F5C686A2FC84772000976AA /* Project object */;
 }
