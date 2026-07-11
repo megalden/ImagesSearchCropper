@@ -90,7 +90,7 @@ struct SearhcView: View {
                     networkClient: NetworkClient()
                 ),
                 imageLoader: ImageLoader(),
-                imageCaching: ImageCaching()
+                imageCaching: ImageCachingService()
             )
         )
     )

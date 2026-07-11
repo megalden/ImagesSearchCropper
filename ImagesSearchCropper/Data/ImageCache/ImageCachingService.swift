@@ -5,7 +5,7 @@ protocol ImageCachingProtocol {
     func insert(image: UIImage, url: URL)
 }
 
-final class ImageCaching: ImageCachingProtocol {
+final class ImageCachingService: ImageCachingProtocol {
     private let cache = NSCache<NSString, UIImage>()
     
     init() {

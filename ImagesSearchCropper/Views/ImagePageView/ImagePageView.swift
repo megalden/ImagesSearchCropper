@@ -6,7 +6,7 @@ struct ImagePageView: View {
     @ObservedObject var appViewModel: AppViewModel
     
     var image: ImageItem?
-//    @Environment(\.dismiss) private var dismiss
+    
     @State var showZoomView = false
     @Binding var searchText: String
     
@@ -14,20 +14,6 @@ struct ImagePageView: View {
         VStack(alignment: .leading ,spacing: 10) {
             SearchBoxView(searchText: $searchText, backSearch: $appViewModel.screen)
                 .background(Color.white)
-            
-//            Button {
-//                dismiss()
-//            } label: {
-//                ZStack {
-//                    RoundedRectangle(cornerRadius: 5)
-//                        .foregroundStyle(Color.userGray)
-//                        .frame(width: 32, height: 32)
-//                    
-//                    Image(systemName: "chevron.left")
-//                        .foregroundStyle(Color.darkPurple)
-//                }
-//            }
-//            .padding(22)
             
             ZStack(alignment: .bottomTrailing) {
                 if let uiImage = image?.image {

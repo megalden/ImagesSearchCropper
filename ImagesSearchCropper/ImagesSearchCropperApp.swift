@@ -11,7 +11,7 @@ struct ImagesSearchCropperApp: App {
                 networkClient: NetworkClient()
             ),
             imageLoader: ImageLoader(),
-            imageCaching: ImageCaching()
+            imageCaching: ImageCachingService()
         )
     )
     

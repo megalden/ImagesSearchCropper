@@ -7,13 +7,11 @@ struct LocalImageItemView: View {
     @State private var isShowingCropper = false
     @State private var imageToCrop: UIImage?
     
-    
     var body: some View {
         ZStack(alignment: .topTrailing) {
             
-                Image(uiImage: image)
-                    .resizable()
-            
+            Image(uiImage: image)
+                .resizable()
             
             Button {
                 imageToCrop = image
@@ -33,17 +31,17 @@ struct LocalImageItemView: View {
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .aspectRatio(1.5, contentMode: .fit)
         .fullScreenCover(isPresented: $isShowingCropper) {
-                    if let imageToCrop {
-                        ImageCropperView(image: imageToCrop) { cropped in
-                            image = cropped
-                            
-                            isShowingCropper = false
-                        } onCancel: {
-                            isShowingCropper = false
-                        }
-                        .ignoresSafeArea()
-                    }
+            if let imageToCrop {
+                ImageCropperView(image: imageToCrop) { cropped in
+                    image = cropped
+                    
+                    isShowingCropper = false
+                } onCancel: {
+                    isShowingCropper = false
                 }
+                .ignoresSafeArea()
+            }
+        }
     }
 }
 

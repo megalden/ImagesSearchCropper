@@ -6,14 +6,13 @@ struct EmptyStateView: View {
     @Binding var selectedItems: [PhotosPickerItem]
     
     var body: some View {
-        VStack(spacing: 20) {
-            PhotosPicker(
-                selection: $selectedItems,
-                maxSelectionCount: 10,
-                matching: .images
-            ) {
-                Label("Add photos", systemImage: "photo")
-            }
+        
+        PhotosPicker(
+            selection: $selectedItems,
+            maxSelectionCount: 10,
+            matching: .images
+        ) {
+            Label("Add photos", systemImage: "photo")
         }
     }
 }

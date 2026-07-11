@@ -29,8 +29,9 @@ final class SearchViewModel: ObservableObject {
                     images.append(imageItem)
                 }
             }
-            
-            self.isLoading = false
+            await MainActor.run {
+                self.isLoading = false
+            }
         } catch {
             await MainActor.run {
                 errorMessage = error.localizedDescription
